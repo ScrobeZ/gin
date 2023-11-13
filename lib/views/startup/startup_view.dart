@@ -13,7 +13,6 @@ class _StartUpViewState extends State<StartUpView> {
   @override
   Widget build(BuildContext context) {
     final model = StartUpViewModel();
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: primaryColor,
       body: Center(
@@ -31,7 +30,7 @@ class _StartUpViewState extends State<StartUpView> {
             ),
             GestureDetector(
               onTap: () {
-                model.navigateToLogin();
+                model.navigateToLogin(context);
               },
               child: const CircularProgressIndicator(
                 color: Colors.white,
