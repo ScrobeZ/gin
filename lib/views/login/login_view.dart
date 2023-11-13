@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gin/constants/colors.dart';
 import 'package:gin/constants/gaps.dart';
+import 'package:gin/views/widgets/custom_text_button.dart';
 import 'package:gin/views/widgets/custom_text_form_field.dart';
 
 class LoginView extends StatefulWidget {
@@ -13,18 +14,19 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         backgroundColor: primaryColor,
         body: Padding(
           padding: const EdgeInsets.all(24.0),
-          child: _buildBody(),
+          child: _buildBody(size),
         ),
       ),
     );
   }
 
-  Column _buildBody() {
+  Column _buildBody(Size size) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -62,24 +64,8 @@ class _LoginViewState extends State<LoginView> {
             )
           ],
         ),
-        TextButton(
-          onPressed: () {},
-          style: ButtonStyle(
-            backgroundColor: const MaterialStatePropertyAll(Colors.white),
-            shape: MaterialStatePropertyAll(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(0.0),
-              ),
-            ),
-          ),
-          child: const Text(
-            'INICIAR SESIÓN',
-            style: TextStyle(
-              color: Colors.black,
-            ),
-          ),
-        ),
         verticalBigGap,
+        const CustomTextButton(text: 'INICIAR SESIÓN'),
       ],
     );
   }
