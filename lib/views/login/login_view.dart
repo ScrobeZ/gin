@@ -19,9 +19,12 @@ class _LoginViewState extends State<LoginView> {
             SizedBox(
               height: 200,
               width: 200,
-              child: Image.asset('assets/images/gin_logo.png',
-                  fit: BoxFit.contain),
+              child: Image.asset(
+                'assets/images/gin_logo.png',
+                fit: BoxFit.contain,
+              ),
             ),
+            TextFormField()
           ],
         ),
       ),

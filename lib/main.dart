@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gin/views/startup/startup_view.dart';
+import 'package:gin/config/router/app_router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,14 +10,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const StartUpView(),
+      routerConfig: appRouter,
     );
   }
 }
