@@ -19,7 +19,7 @@ class _LoginViewState extends State<LoginView> {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: primaryColor,
+        backgroundColor: primaryBlack,
         body: Padding(
           padding: const EdgeInsets.all(24.0),
           child: _buildBody(size, model),
@@ -79,7 +79,12 @@ class _LoginViewState extends State<LoginView> {
           ],
         ),
         verticalBigGap,
-        const CustomTextButton(text: 'INICIAR SESIÓN'),
+        CustomTextButton(
+          text: 'INICIAR SESIÓN',
+          onPressed: () {
+            model.navigateToHome(context);
+          },
+        ),
       ],
     );
   }
