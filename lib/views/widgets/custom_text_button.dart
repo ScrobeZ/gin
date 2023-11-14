@@ -4,15 +4,17 @@ class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
     super.key,
     required this.text,
+    required this.onPressed,
   });
 
   final String text;
+  final Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return TextButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: ButtonStyle(
         backgroundColor: const MaterialStatePropertyAll(Colors.white),
         shape: MaterialStatePropertyAll(
