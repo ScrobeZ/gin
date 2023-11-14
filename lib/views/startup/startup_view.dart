@@ -14,7 +14,7 @@ class _StartUpViewState extends State<StartUpView> {
   Widget build(BuildContext context) {
     final model = StartUpViewModel();
     return Scaffold(
-      backgroundColor: primaryColor,
+      backgroundColor: primaryBlack,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

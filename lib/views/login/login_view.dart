@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gin/constants/colors.dart';
 import 'package:gin/constants/gaps.dart';
+import 'package:gin/views/login/login_view_model.dart';
 import 'package:gin/views/widgets/custom_text_button.dart';
 import 'package:gin/views/widgets/custom_text_form_field.dart';
 
@@ -12,21 +13,22 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  final LoginViewModel model = LoginViewModel();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: primaryColor,
+        backgroundColor: primaryBlack,
         body: Padding(
           padding: const EdgeInsets.all(24.0),
-          child: _buildBody(size),
+          child: _buildBody(size, model),
         ),
       ),
     );
   }
 
-  Column _buildBody(Size size) {
+  Column _buildBody(Size size, LoginViewModel model) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -51,21 +53,38 @@ class _LoginViewState extends State<LoginView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Checkbox(
+              checkColor: Colors.black,
               fillColor: const MaterialStatePropertyAll(Colors.white),
-              value: false,
-              onChanged: (value) {},
+              value: model.rememberPassword,
+              onChanged: (value) => setState(
+                () {
+                  model.rememberPasswordChanged();
+                },
+              ),
             ),
-            const Text(
-              'Recordar contraseña',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
+            GestureDetector(
+              onTap: () => setState(
+                () {
+                  model.rememberPasswordChanged();
+                },
+              ),
+              child: const Text(
+                'Recordar contraseña',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
               ),
             )
           ],
         ),
         verticalBigGap,
-        const CustomTextButton(text: 'INICIAR SESIÓN'),
+        CustomTextButton(
+          text: 'INICIAR SESIÓN',
+          onPressed: () {
+            model.navigateToHome(context);
+          },
+        ),
       ],
     );
   }
