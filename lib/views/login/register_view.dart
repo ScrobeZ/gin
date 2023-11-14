@@ -3,20 +3,25 @@ import 'package:gin/constants/colors.dart';
 import 'package:gin/constants/gaps.dart';
 import 'package:gin/views/widgets/custom_text_button.dart';
 import 'package:gin/views/widgets/custom_text_form_field.dart';
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _RegisterViewState extends State<RegisterView> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        backgroundColor: primaryColor,
+        appBar: AppBar(
+          backgroundColor: primaryBlack,
+          iconTheme: IconThemeData(color: Colors.white),
+        ),
+        backgroundColor: primaryBlack,
         body: Padding(
           padding: const EdgeInsets.all(24.0),
           child: _buildBody(size),
@@ -27,7 +32,6 @@ class _LoginViewState extends State<LoginView> {
 
   Column _buildBody(Size size) {
     return Column(
-      // mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
           height: 150,
@@ -55,23 +59,7 @@ class _LoginViewState extends State<LoginView> {
         ),
         verticalBigGap,
         verticalBigGap,
-        const CustomTextButton(text: 'REGISTRAR'),
-
-      verticalBigGap,
-      verticalBigGap,
-      verticalBigGap,
-      const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-              Text(
-              '¿Ya tienes una cuenta? Inicie sesión',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-              ),
-            )
-          ],
-        ),
+        CustomTextButton(text: 'REGISTRAR', onPressed: () {}),
       ],
     );
   }

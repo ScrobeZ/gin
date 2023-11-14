@@ -85,6 +85,43 @@ class _LoginViewState extends State<LoginView> {
             model.navigateToHome(context);
           },
         ),
+        verticalBigGap,
+        verticalBigGap,
+        verticalBigGap,
+        verticalBigGap,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            GestureDetector(
+              onTap: () => setState(
+                () {
+                  model.navigateToRegister(context);
+                },
+              ),
+              child: const Text(
+                'Registrarse',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () => setState(
+                () {
+                  //model.rememberPasswordChanged();
+                },
+              ),
+              child: const Text(
+                'Olvide mi\ncontraseña',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
+              ),
+            )
+          ],
+        ),
       ],
     );
   }

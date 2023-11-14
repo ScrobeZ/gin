@@ -3,6 +3,7 @@ import 'package:gin/constants/strings.dart';
 import 'package:gin/views/home/dashboard/dashboard_view.dart';
 import 'package:gin/views/home/home_view.dart';
 import 'package:gin/views/login/login_view.dart';
+import 'package:gin/views/login/register_view.dart';
 import 'package:gin/views/startup/startup_view.dart';
 import 'package:go_router/go_router.dart';
 
@@ -24,19 +25,24 @@ final GoRouter appRouter = GoRouter(
       path: loginRoute,
       builder: (context, state) => const LoginView(),
     ),
+    GoRoute(
+      path: registerRoute,
+      builder: (context, state) => const RegisterView(),
+    ),
     ShellRoute(
-        parentNavigatorKey: _rootNavigatorKey,
-        navigatorKey: _shellNavigatorKey,
-        builder: (context, state, child) {
-          return HomeView(
-            child: child,
-          );
-        },
-        routes: <RouteBase>[
-          GoRoute(
-            path: dashboardRoute,
-            builder: (context, state) => DashboardView(),
-          )
-        ]),
+      parentNavigatorKey: _rootNavigatorKey,
+      navigatorKey: _shellNavigatorKey,
+      builder: (context, state, child) {
+        return HomeView(
+          child: child,
+        );
+      },
+      routes: <RouteBase>[
+        GoRoute(
+          path: dashboardRoute,
+          builder: (context, state) => DashboardView(),
+        )
+      ],
+    ),
   ],
 );
