@@ -11,4 +11,8 @@ class LoginViewModel {
   navigateToHome(BuildContext context) {
     context.go(dashboardRoute);
   }
+
+  navigateToRegister(BuildContext context) {
+    context.push(registerRoute);
+  }
 }
