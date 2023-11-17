@@ -22,7 +22,11 @@ class _RegisterViewState extends State<RegisterView> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: primaryBlack,
-          iconTheme: IconThemeData(color: Colors.white),
+          title: const Text(
+            'Iniciar sesión',
+            style: TextStyle(color: Colors.white)
+            ),
+          iconTheme: const IconThemeData(color: Colors.white),
         ),
         backgroundColor: primaryBlack,
         body: Padding(
