@@ -45,6 +45,22 @@ final GoRouter appRouter = GoRouter(
         GoRoute(
           path: dashboardRoute,
           builder: (context, state) => DashboardView(),
+        ),
+                GoRoute(
+          path: categoryRoute,
+          builder: (context, state) => CategoryView(),
+        ),
+        GoRoute(
+          path: categoryProductsRoute,
+          builder: (context, state) => CategoryProductsView(),
+        ),
+                GoRoute(
+          path: dashboardRoute,
+          builder: (context, state) => DashboardView(),
+        ),
+        GoRoute(
+          path: shoppingCartRoute,
+          builder: (context, state) => ShoppingCartView(),
         )
       ],
     ),
