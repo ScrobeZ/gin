@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+const SizedBox verticalMicroGap = SizedBox(
+  height: 5,
+);
 const SizedBox verticalBigGap = SizedBox(
   height: 32,
 );
