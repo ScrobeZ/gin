@@ -19,7 +19,7 @@ class _RegisterViewState extends State<RegisterView> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: primaryBlack,
-          iconTheme: IconThemeData(color: Colors.white),
+          iconTheme: const IconThemeData(color: Colors.white),
         ),
         backgroundColor: primaryBlack,
         body: Padding(
