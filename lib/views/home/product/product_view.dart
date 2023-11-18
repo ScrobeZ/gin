@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gin/constants/colors.dart';
 import 'package:gin/views/widgets/custom_text_button.dart';
 
 class ProductView extends StatefulWidget {
@@ -33,7 +34,7 @@ class _ProductViewState extends State<ProductView> {
         ),
         onPressed: () {},
       ),
-      title: const Text("Gin"),
+      title: _buildSearchBar(size),
       centerTitle: true,
       actions: [
         IconButton(
@@ -44,6 +45,28 @@ class _ProductViewState extends State<ProductView> {
           onPressed: () {},
         ),
       ],
+    );
+  }
+  
+  SizedBox _buildSearchBar(Size size) {
+    return SizedBox(
+      width: size.width * 0.60,
+      height: 30,
+      child: const TextField(
+        decoration: InputDecoration(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(50),
+            ),
+          ),
+          contentPadding: EdgeInsets.symmetric(horizontal: 16),
+          fillColor: Colors.white,
+          filled: true,
+          hintText: '¿Algo en especifico?',
+          hintStyle: TextStyle(color: primaryBlack, fontSize: 12),
+        ),
+        style: TextStyle(fontSize: 12),
+      ),
     );
   }
 
@@ -77,14 +100,5 @@ class _ProductViewState extends State<ProductView> {
         ),
       ],
     );
-
-    /*CustomTextButton(
-          text: 'AÑADIR AL CARRO',
-          onPressed: () {},
-          heigth: 20,
-          color: Colors.pink.shade100,
-          fontSize: 17,
-          width: 100,
-        ),*/
   }
 }
