@@ -41,10 +41,15 @@ class _DashboardViewState extends State<DashboardView> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          ProductWidget(
-                            productName: model.products![0].title,
-                            productPrice: '\$${model.products![0].price}',
-                            image: Image.network(model.products![0].image),
+                          GestureDetector(
+                            onTap: () {
+                              model.navigateToProduct(context);
+                            },
+                            child: ProductWidget(
+                              productName: model.products![0].title,
+                              productPrice: '\$${model.products![0].price}',
+                              image: Image.network(model.products![0].image),
+                            ),
                           ),
                           ProductWidget(
                             productName: model.products![1].title,
