@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gin/constants/colors.dart';
 import 'package:gin/constants/gaps.dart';
+import 'package:gin/views/login/register_view_model.dart';
 import 'package:gin/views/widgets/custom_text_button.dart';
 import 'package:gin/views/widgets/custom_text_form_field.dart';
 
@@ -12,6 +13,8 @@ class RegisterView extends StatefulWidget {
 }
 
 class _RegisterViewState extends State<RegisterView> {
+  final RegisterViewModel model = RegisterViewModel();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -19,18 +22,22 @@ class _RegisterViewState extends State<RegisterView> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: primaryBlack,
+          title: const Text(
+            'Iniciar sesión',
+            style: TextStyle(color: Colors.white)
+            ),
           iconTheme: const IconThemeData(color: Colors.white),
         ),
         backgroundColor: primaryBlack,
         body: Padding(
           padding: const EdgeInsets.all(24.0),
-          child: _buildBody(size),
+          child: _buildBody(size, model),
         ),
       ),
     );
   }
 
-  Column _buildBody(Size size) {
+  Column _buildBody(Size size, RegisterViewModel model) {
     return Column(
       children: [
         SizedBox(
@@ -59,7 +66,9 @@ class _RegisterViewState extends State<RegisterView> {
         ),
         verticalBigGap,
         verticalBigGap,
-        CustomTextButton(text: 'REGISTRAR', onPressed: () {}),
+        CustomTextButton(text: 'REGISTRAR', onPressed: () {
+          model.navigateToHome(context);
+        }),
       ],
     );
   }
