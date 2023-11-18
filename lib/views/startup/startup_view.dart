@@ -13,6 +13,9 @@ class _StartUpViewState extends State<StartUpView> {
   @override
   Widget build(BuildContext context) {
     final model = StartUpViewModel();
+    Future.delayed(const Duration(seconds: 3), () {
+      model.navigateToLogin(context);
+    });
     return Scaffold(
       backgroundColor: primaryBlack,
       body: Center(
@@ -28,13 +31,8 @@ class _StartUpViewState extends State<StartUpView> {
             const SizedBox(
               height: 18.0,
             ),
-            GestureDetector(
-              onTap: () {
-                model.navigateToLogin(context);
-              },
-              child: const CircularProgressIndicator(
-                color: Colors.white,
-              ),
+            const CircularProgressIndicator(
+              color: Colors.white,
             ),
           ],
         ),

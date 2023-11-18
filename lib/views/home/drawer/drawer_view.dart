@@ -16,6 +16,7 @@ class _DrawerViewState extends State<DrawerView> {
       width: size.width * 0.8,
       height: double.infinity,
       color: primaryBlack,
+      child: Column(children: []),
     );
   }
 }
