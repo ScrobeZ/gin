@@ -9,8 +9,10 @@ class DiscountWidget extends StatelessWidget {
     required this.discount,
     required this.limitedEdition,
     required this.onPressed,
+    required this.image,
   });
 
+  final Image image;
   final String discount;
   final bool limitedEdition;
   final Function() onPressed;
@@ -27,7 +29,8 @@ class DiscountWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              color: primaryBlack,
+              color: Colors.white,
+              child: image,
               height: 150,
               width: 150,
             ),
