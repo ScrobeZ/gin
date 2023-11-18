@@ -4,6 +4,8 @@ import 'package:gin/views/home/categories/category_view.dart';
 import 'package:gin/views/home/categoryProducts/categoryProducts_view.dart';
 import 'package:gin/views/home/dashboard/dashboard_view.dart';
 import 'package:gin/views/home/home_view.dart';
+import 'package:gin/views/home/product_view.dart';
+import 'package:gin/views/home/shopping_cart/shopping_cart_view.dart';
 import 'package:gin/views/login/login_view.dart';
 import 'package:gin/views/login/register_view.dart';
 import 'package:gin/views/startup/startup_view.dart';
@@ -44,13 +46,21 @@ final GoRouter appRouter = GoRouter(
           path: dashboardRoute,
           builder: (context, state) => DashboardView(),
         ),
-        GoRoute(
+                GoRoute(
           path: categoryRoute,
           builder: (context, state) => CategoryView(),
         ),
         GoRoute(
           path: categoryProductsRoute,
           builder: (context, state) => CategoryProductsView(),
+        ),
+                GoRoute(
+          path: dashboardRoute,
+          builder: (context, state) => DashboardView(),
+        ),
+        GoRoute(
+          path: shoppingCartRoute,
+          builder: (context, state) => ShoppingCartView(),
         )
       ],
     ),

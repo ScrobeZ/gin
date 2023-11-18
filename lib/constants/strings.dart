@@ -5,3 +5,5 @@ const String homeRoute = '/home';
 const String dashboardRoute = '/dashboard';
 const String categoryRoute = '/category';
 const String categoryProductsRoute = '/categoryproducts';
+const String shoppingCartRoute = '/shopping_cart';
+const String fakeStoreURL = 'https://fakestoreapi.com';
