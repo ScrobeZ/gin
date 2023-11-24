@@ -47,7 +47,7 @@ class _ProductViewState extends State<ProductView> {
       ],
     );
   }
-  
+
   SizedBox _buildSearchBar(Size size) {
     return SizedBox(
       width: size.width * 0.60,
@@ -71,34 +71,39 @@ class _ProductViewState extends State<ProductView> {
   }
 
   _buildBody() {
-    return Row(
-      children: [
+    return Center(
+      child: Column(
+       mainAxisAlignment: MainAxisAlignment.center,
+        children: [
         SizedBox(
-            height: 250,
-            width: 350,
+            height: 500,
+            width: 450,
             child: Center(child: Image.asset('assets/images/audi.jpeg'))),
         const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text("Audifonos inalambricos", style: TextStyle(fontSize: 15)),
               Text("Precio"),
-              Text("\$70", style: TextStyle(fontSize: 15)),
+              Text("\$70", style: TextStyle(fontSize: 25)),
               Text("Descuento"),
-              Text("20%", style: TextStyle(fontSize: 15)),
+              Text("20%"),
+              
             ]),
         Column(
           children: [
             CustomTextButton(
               text: 'AÑADIR AL CARRO',
               onPressed: () {},
-              heigth: 20,
+              heigth: 80,
               color: Colors.pink.shade100,
-              fontSize: 17,
+              fontSize: 20,
               width: 100,
             )
           ],
         ),
-      ],
+        ],
+      ),
+      
     );
   }
 }

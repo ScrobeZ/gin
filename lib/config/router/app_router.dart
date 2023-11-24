@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:gin/constants/strings.dart';
 import 'package:gin/views/home/dashboard/dashboard_view.dart';
 import 'package:gin/views/home/home_view.dart';
+import 'package:gin/views/home/shopping_cart/shopping_cart_view.dart';
 
 import 'package:gin/views/login/login_view.dart';
 import 'package:gin/views/login/register_view.dart';
 import 'package:gin/views/startup/startup_view.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../views/home/product/product_view.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -28,7 +31,7 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(
       path: registerRoute,
-      builder: (context, state) => const RegisterView(),
+      builder: (context, state) => const ProductView(),
     ),
     ShellRoute(
       parentNavigatorKey: _rootNavigatorKey,

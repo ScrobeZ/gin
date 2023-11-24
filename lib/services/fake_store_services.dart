@@ -10,7 +10,7 @@ class FakeStoreService {
       if (response.statusCode == 200 && response.data != null) {
         final product = Product.fromJson(response.data);
         return product;
-      }
+      } 
     } on DioException catch (e) {
       return e.response!.data;
     }

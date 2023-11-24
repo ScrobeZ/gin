@@ -1,1 +1,5 @@
-class ProductViewModel{}
+class ProductViewModel{
+
+
+  
+}
