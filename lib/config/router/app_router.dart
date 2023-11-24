@@ -46,7 +46,7 @@ final GoRouter appRouter = GoRouter(
           path: dashboardRoute,
           builder: (context, state) => DashboardView(),
         ),
-                GoRoute(
+        GoRoute(
           path: categoryRoute,
           builder: (context, state) => CategoryView(),
         ),
@@ -54,17 +54,17 @@ final GoRouter appRouter = GoRouter(
           path: categoryProductsRoute,
           builder: (context, state) => CategoryProductsView(),
         ),
-                GoRoute(
+        GoRoute(
           path: dashboardRoute,
           builder: (context, state) => DashboardView(),
         ),
         GoRoute(
           path: shoppingCartRoute,
-          builder: (context, state) => ShoppingCartView(),
+          builder: (context, state) => const ShoppingCartView(),
         ),
         GoRoute(
           path: productRoute,
-          builder: (context, state) => ProductView(),
+          builder: (context, state) => const ProductView(),
         )
       ],
     ),

@@ -12,60 +12,57 @@ class CategoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
-    // final size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 50),
-      
-      child:SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Title
-          const Text(
-            'Categorías',
-            style: TextStyle(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-                    // Spacing
-        const SizedBox(height: 30),
-        Wrap(
-          spacing: 8.0,
-          runSpacing: 25.0,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CategoryWidget(
-              name: 'Ropa',
-              onPressed: () {
-                model.navigateToCategoryProducts(context);
-              },
-            ),
-            CategoryWidget(
-              name: 'Hogar',
-              onPressed: () {},
-            ),
-            CategoryWidget(
-              name: 'Tecnología',
-              onPressed: () {},
-            ),
-            CategoryWidget(
-              name: 'Linea blanca',
-              onPressed: () {},
-            ),
-            CategoryWidget(
-              name: 'Ropa',
-              onPressed: () {},
-            ),
-            CategoryWidget(
-              name: 'Videojuegos',
-              onPressed: () {},
+            // Title
+            const Text(
+              'Categorías',
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
               ),
-            ],
-          ),
-        ],
+            ),
+            // Spacing
+            const SizedBox(height: 30),
+            Wrap(
+              spacing: 8.0,
+              runSpacing: 25.0,
+              children: [
+                CategoryWidget(
+                  name: 'Ropa',
+                  onPressed: () {
+                    model.navigateToCategoryProducts(context);
+                  },
+                ),
+                CategoryWidget(
+                  name: 'Hogar',
+                  onPressed: () {},
+                ),
+                CategoryWidget(
+                  name: 'Tecnología',
+                  onPressed: () {},
+                ),
+                CategoryWidget(
+                  name: 'Linea blanca',
+                  onPressed: () {},
+                ),
+                CategoryWidget(
+                  name: 'Ropa',
+                  onPressed: () {},
+                ),
+                CategoryWidget(
+                  name: 'Videojuegos',
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 }
