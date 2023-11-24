@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gin/constants/colors.dart';
+import 'package:gin/constants/colors.dart';
 import 'package:gin/views/widgets/custom_text_button.dart';
+
+
+
 
 class ProductView extends StatefulWidget {
   const ProductView({super.key});
@@ -26,7 +30,7 @@ class _ProductViewState extends State<ProductView> {
 
   AppBar _buildAppBar(Size size) {
     return AppBar(
-      backgroundColor: Colors.purple,
+      backgroundColor: primaryBlack,
       leading: IconButton(
         icon: const Icon(
           Icons.menu,
@@ -80,23 +84,23 @@ class _ProductViewState extends State<ProductView> {
             width: 450,
             child: Center(child: Image.asset('assets/images/audi.jpeg'))),
         const Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text("Audifonos inalambricos", style: TextStyle(fontSize: 15)),
-              Text("Precio"),
-              Text("\$70", style: TextStyle(fontSize: 25)),
-              Text("Descuento"),
-              Text("20%"),
+              children: <Widget>[
+              Text("Audifonos inalambricos", textAlign: TextAlign.right,  style: TextStyle(fontSize: 18)),
+              Text("Precio", textAlign: TextAlign.right, style: TextStyle(fontSize: 17)),
+              Text("\$70", textAlign: TextAlign.left, style: TextStyle(fontSize: 25)),
+              Text("Descuento", textAlign: TextAlign.left, style: TextStyle(fontSize: 25)),
+              Text("20%",textAlign: TextAlign.right, style: TextStyle(fontSize: 20)),
               
             ]),
         Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CustomTextButton(
-              text: 'AÑADIR AL CARRO',
+              text: 'AÑADIR AL CARRO', 
               onPressed: () {},
-              heigth: 80,
-              color: Colors.pink.shade100,
-              fontSize: 20,
+              heigth: 50,
+              color: pink,
+              fontSize: 12,
               width: 100,
             )
           ],

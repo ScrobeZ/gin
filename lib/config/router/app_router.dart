@@ -3,12 +3,10 @@ import 'package:gin/constants/strings.dart';
 import 'package:gin/views/home/dashboard/dashboard_view.dart';
 import 'package:gin/views/home/home_view.dart';
 import 'package:gin/views/home/shopping_cart/shopping_cart_view.dart';
-
 import 'package:gin/views/login/login_view.dart';
 import 'package:gin/views/login/register_view.dart';
 import 'package:gin/views/startup/startup_view.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../views/home/product/product_view.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
@@ -27,11 +25,11 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(
       path: loginRoute,
-      builder: (context, state) => const LoginView(),
+      builder: (context, state) => const ProductView(),
     ),
     GoRoute(
       path: registerRoute,
-      builder: (context, state) => const ProductView(),
+      builder: (context, state) => const RegisterView(),
     ),
     ShellRoute(
       parentNavigatorKey: _rootNavigatorKey,
