@@ -51,8 +51,9 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) => CategoryView(),
         ),
         GoRoute(
-          path: categoryProductsRoute,
-          builder: (context, state) => CategoryProductsView(),
+          path: '$categoryProductsRoute/:category',
+          builder: (context, state) =>
+              CategoryProductsView(category: state.pathParameters['category']!),
         ),
         GoRoute(
           path: dashboardRoute,

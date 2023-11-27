@@ -4,7 +4,7 @@ import 'package:gin/views/categories/category_viewmodel.dart';
 import 'package:gin/views/categories/widgets/category_widget.dart';
 
 class CategoryView extends StatefulWidget {
-  CategoryView({super.key});
+  const CategoryView({super.key});
 
   @override
   State<CategoryView> createState() => _CategoryViewState();
@@ -66,10 +66,19 @@ class _CategoryViewState extends State<CategoryView> {
   }
 
   List<Widget> _buildCategoriesList() {
-    return model.categories!
-        .map(
-          (e) => CategoryWidget(name: e, onPressed: () {}),
-        )
-        .toList();
+    List<Widget> widgets = [];
+
+    for (var i = 0; i < model.categoriesES!.length; i++) {
+      widgets.add(
+        CategoryWidget(
+          name: model.categoriesES![i],
+          onPressed: () {
+            model.navigateToCategoryProducts(context, i);
+          },
+        ),
+      );
+    }
+
+    return widgets;
   }
 }

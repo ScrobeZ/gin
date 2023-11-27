@@ -5,17 +5,17 @@ import 'package:gin/services/fake_store_services.dart';
 import 'package:go_router/go_router.dart';
 
 class CategoryViewModel {
-  List<String>? categories;
+  List<String>? categoriesES;
+  List<String>? categoriesEN;
 
   final FakeStoreService _fakeStoreService = FakeStoreService();
 
   Future<void> getCategories() async {
-    categories = await _fakeStoreService.getCategories();
-    categories = Translations().translateCategories(categories!);
-    print(categories);
+    categoriesEN = await _fakeStoreService.getCategories();
+    categoriesES = Translations().translateCategories(categoriesEN!);
   }
 
-  navigateToCategoryProducts(BuildContext context) {
-    context.push(categoryProductsRoute);
+  navigateToCategoryProducts(BuildContext context, int index) {
+    context.push('$categoryProductsRoute/${categoriesEN![index]}');
   }
 }

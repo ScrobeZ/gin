@@ -33,7 +33,6 @@ class _HomeViewState extends State<HomeView> {
                 ),
                 onPressed: () {
                   Scaffold.of(context).openDrawer();
-                  print('abre drawer');
                 },
               );
             },
@@ -53,9 +52,7 @@ class _HomeViewState extends State<HomeView> {
                       onPressed: () {
                         model.changeIsDashboard();
                         setState(() {
-                          print(model.isDashboard);
                           model.navigateToShoppingCart(context);
-                          print(model.isDashboard);
                         });
                       },
                     )
@@ -65,9 +62,7 @@ class _HomeViewState extends State<HomeView> {
                       onPressed: () {
                         model.changeIsDashboard();
                         setState(() {
-                          print(model.isDashboard);
                           context.pop();
-                          print(model.isDashboard);
                         });
                       },
                     ),

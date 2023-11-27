@@ -1,5 +1,5 @@
 class Translations {
-  translateCategories(List<String> list) {
+  List<String> translateCategories(List<String> list) {
     Map<String, String> translationMap = {
       'electronics': 'Electrónicos',
       'jewelery': 'Joyería',
@@ -12,5 +12,20 @@ class Translations {
     }).toList();
 
     return categoriesInSpanish;
+  }
+
+  String translateCategory(String categoryEN) {
+    switch (categoryEN) {
+      case 'electronics':
+        return 'Electrónicos';
+      case 'jewelery':
+        return 'Joyería';
+      case "men's clothing":
+        return 'Ropa para hombres';
+      case "women's clothing":
+        return 'Ropa para mujeres';
+      default:
+        return 'Nada';
+    }
   }
 }

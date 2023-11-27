@@ -16,9 +16,9 @@ class FakeStoreService {
     }
   }
 
-  Future<dynamic> getProducts() async {
+  Future<dynamic> getProducts({String category = ''}) async {
     try {
-      final response = await _dio.get('$fakeStoreURL/products');
+      final response = await _dio.get('$fakeStoreURL/products$category');
       if (response.statusCode == 200 && response.data != null) {
         final products =
             (response.data as List).map((e) => Product.fromJson(e)).toList();
@@ -33,12 +33,10 @@ class FakeStoreService {
     try {
       final response = await _dio.get('$fakeStoreURL/products/categories');
       if (response.statusCode == 200 && response.data != null) {
-        print(response.data);
         final List<dynamic> list = response.data;
         return list.map((e) => e.toString()).toList();
       }
     } on DioException catch (e) {
-      print(e.response!.data);
       return e.response!.data;
     }
   }

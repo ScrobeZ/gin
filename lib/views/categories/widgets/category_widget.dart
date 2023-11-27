@@ -26,9 +26,9 @@ class CategoryWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              color: primaryBlack,
               height: 115,
               width: 100,
+              child: _categoryImage(),
             ),
             horizontalSmallGap,
             horizontalSmallGap,
@@ -54,5 +54,24 @@ class CategoryWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Image _categoryImage() {
+    switch (name) {
+      case 'Electrónicos':
+        return Image.asset('assets/images/categories/electronicos.jpg',
+            fit: BoxFit.contain);
+      case 'Joyería':
+        return Image.asset('assets/images/categories/joyeria.jpg',
+            fit: BoxFit.contain);
+      case 'Ropa para hombres':
+        return Image.asset('assets/images/categories/ropa_hombres.jpg',
+            fit: BoxFit.contain);
+      case 'Ropa para mujeres':
+        return Image.asset('assets/images/categories/ropa_mujeres.jpg',
+            fit: BoxFit.contain);
+      default:
+        return Image.asset('assets/images/gin_logo.png', fit: BoxFit.contain);
+    }
   }
 }
