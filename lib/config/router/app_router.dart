@@ -4,12 +4,14 @@ import 'package:gin/views/categories/category_view.dart';
 import 'package:gin/views/categories/categoryProducts/categoryProducts_view.dart';
 import 'package:gin/views/home/dashboard/dashboard_view.dart';
 import 'package:gin/views/home/home_view.dart';
+
 import 'package:gin/views/home/product/product_view.dart';
 import 'package:gin/views/home/shopping_cart/shopping_cart_view.dart';
 import 'package:gin/views/login/login_view.dart';
 import 'package:gin/views/login/register_view.dart';
 import 'package:gin/views/startup/startup_view.dart';
 import 'package:go_router/go_router.dart';
+import '../../views/home/product/product_view.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -27,7 +29,7 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(
       path: loginRoute,
-      builder: (context, state) => const LoginView(),
+      builder: (context, state) => const ProductView(),
     ),
     GoRoute(
       path: registerRoute,
