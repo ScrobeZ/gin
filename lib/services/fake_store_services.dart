@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:gin/constants/strings.dart';
-import 'package:gin/models/categories.dart';
 import 'package:gin/models/product.dart';
 
 class FakeStoreService {
@@ -32,12 +31,14 @@ class FakeStoreService {
 
   Future<dynamic> getCategories() async {
     try {
-      final response = await _dio.get('$fakeStoreURL/categories');
+      final response = await _dio.get('$fakeStoreURL/products/categories');
       if (response.statusCode == 200 && response.data != null) {
-        final categories = Categories.fromJson(response.data);
-        return categories;
+        print(response.data);
+        final List<dynamic> list = response.data;
+        return list.map((e) => e.toString()).toList();
       }
     } on DioException catch (e) {
+      print(e.response!.data);
       return e.response!.data;
     }
   }

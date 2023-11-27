@@ -19,6 +19,7 @@ class CategoryWidget extends StatelessWidget {
     return Container(
       color: blueMarine,
       height: size.height * 0.3,
+      width: 150,
       child: Padding(
         padding: const EdgeInsets.all(13.0),
         child: Column(
@@ -29,21 +30,26 @@ class CategoryWidget extends StatelessWidget {
               height: 115,
               width: 100,
             ),
-          horizontalSmallGap,
-          horizontalSmallGap,
-          Text(
-            name,
-            style: const TextStyle(fontSize: 20, color: Colors.white),
-          ),
-          CustomTextButton(
-            color: pink,
-            fontSize: 11,
-            heigth: 30,
-            width: 125,
-            text: 'Ir a categoria',
-            textColor: Colors.white,
-            onPressed: onPressed,
-          )
+            horizontalSmallGap,
+            horizontalSmallGap,
+            Text(
+              name,
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+              ),
+              maxLines: 2,
+              textAlign: TextAlign.center,
+            ),
+            CustomTextButton(
+              color: pink,
+              fontSize: 11,
+              heigth: 30,
+              width: 120,
+              text: 'Ir a categoria',
+              textColor: Colors.white,
+              onPressed: onPressed,
+            )
           ],
         ),
       ),

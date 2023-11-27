@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gin/constants/strings.dart';
-import 'package:gin/views/home/categories/category_view.dart';
-import 'package:gin/views/home/categoryProducts/categoryProducts_view.dart';
+import 'package:gin/views/categories/category_view.dart';
+import 'package:gin/views/categories/categoryProducts/categoryProducts_view.dart';
 import 'package:gin/views/home/dashboard/dashboard_view.dart';
 import 'package:gin/views/home/home_view.dart';
 import 'package:gin/views/home/product/product_view.dart';
