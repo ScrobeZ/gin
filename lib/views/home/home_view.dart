@@ -40,32 +40,20 @@ class _HomeViewState extends State<HomeView> {
           title: _buildSearchBar(size),
           centerTitle: true,
           actions: [
-            AnimatedSwitcher(
-              duration: Duration(seconds: 10),
-              child: model.isDashboard
-                  ? IconButton(
-                      key: UniqueKey(),
-                      icon: const Icon(
-                        Icons.shopping_cart_rounded,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        model.changeIsDashboard();
-                        setState(() {
-                          model.navigateToShoppingCart(context);
-                        });
-                      },
-                    )
-                  : BackButton(
-                      key: UniqueKey(),
-                      color: Colors.white,
-                      onPressed: () {
-                        model.changeIsDashboard();
-                        setState(() {
-                          context.pop();
-                        });
-                      },
-                    ),
+            IconButton(
+              key: UniqueKey(),
+              icon: const Icon(
+                Icons.shopping_cart_rounded,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                setState(() {
+                  if (model.isDashboard) {
+                    model.changeIsDashboard(context);
+                    model.navigateToShoppingCart(context);
+                  } else {}
+                });
+              },
             ),
           ],
         ),

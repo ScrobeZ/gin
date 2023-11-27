@@ -9,7 +9,7 @@ class HomeViewModel {
     context.push(shoppingCartRoute);
   }
 
-  changeIsDashboard() {
+  changeIsDashboard(BuildContext context) {
     isDashboard = !isDashboard;
   }
 }
