@@ -1,54 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:gin/constants/colors.dart';
 import 'package:gin/constants/gaps.dart';
 
-class ProductsWidget extends StatelessWidget {
-  const ProductsWidget({
+class ProductWidget extends StatelessWidget {
+  const ProductWidget({
     super.key,
-    required this.name,
-    required this.price,
-    required this.onPressed,
+    required this.productName,
+    required this.productPrice,
+    required this.image,
   });
 
-  final String name;
-  final int price;
-  final Function() onPressed;
+  final Image image;
+  final String productName;
+  final double productPrice;
 
-@override
-Widget build(BuildContext context) {
-  final size = MediaQuery.of(context).size;
-  return Container(
-    color: blueMarine,
-    height: size.height * 0.3,
-    child: Padding(
-      padding: const EdgeInsets.all(13.0),
-      child: Column( // Use Row instead of Column
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 200,
+      width: 135,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Container(
-            color: primaryBlack,
-            height: 150,
-            width: 200,
+          SizedBox(
+            height: 125,
+            width: 130,
+            child: image,
           ),
-          horizontalSmallGap,
-          horizontalSmallGap,
-          Row( // Wrap the Text widgets in a Column
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                name,
-                style: const TextStyle(fontSize: 20, color: Colors.white),
-              ),
-              const SizedBox(width: 10),
-              Text(
-                '\$ $price',
-                style: const TextStyle(fontSize: 20, color: Colors.white),
-              ),
-            ],
+          verticalMicroGap,
+          Text(
+            productName,
+            style: const TextStyle(fontSize: 14, height: 1),
+            maxLines: 3,
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              '\$ $productPrice',
+              style: const TextStyle(fontSize: 12),
+            ),
           ),
         ],
       ),
-    )
-  );
-}
+    );
+  }
 }

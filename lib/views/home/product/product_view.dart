@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gin/views/widgets/custom_text_button.dart';
 import 'package:gin/constants/colors.dart';
 import 'package:gin/constants/colors.dart';
 import 'package:gin/views/widgets/custom_text_button.dart';
-
 
 
 
@@ -20,7 +20,9 @@ class _ProductViewState extends State<ProductView> {
     return SafeArea(
       child: Scaffold(
           backgroundColor: Colors.white,
+
           appBar: _buildAppBar(size),
+
           body: Padding(
             padding: const EdgeInsets.all(24.0),
             child: _buildBody(),
@@ -28,6 +30,43 @@ class _ProductViewState extends State<ProductView> {
     );
   }
 
+  Widget _buildBody() {
+    return Column(
+      children: [
+        SizedBox(
+          height: 250,
+          width: 350,
+          child: Center(
+            child: Image.asset('assets/images/audi.jpeg'),
+          ),
+        ),
+        const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "Audifonos inalambricos",
+              style: TextStyle(fontSize: 15),
+            ),
+            Text("Precio"),
+            Text("\$70", style: TextStyle(fontSize: 15)),
+            Text("Descuento"),
+            Text("20%", style: TextStyle(fontSize: 15)),
+          ],
+        ),
+        Column(
+          children: [
+            CustomTextButton(
+              text: 'AÑADIR AL CARRO',
+              onPressed: () {},
+              heigth: 50,
+              color: Colors.pink.shade100,
+              fontSize: 14,
+              width: 150,
+            )
+          ],
+        ),
+      ],
+    );
   AppBar _buildAppBar(Size size) {
     return AppBar(
       backgroundColor: primaryBlack,
