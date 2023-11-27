@@ -47,7 +47,7 @@ class FakeStoreService {
       final response = await _dio.get('$fakeStoreURL/carts/5');
       if (response.statusCode == 200 && response.data != null) {
         final cartProducts = cart.Cart.fromJson(response.data);
-        print(cartProducts);
+        print(cartProducts.userId);
         return cartProducts;
       }
     } on DioException catch (e) {

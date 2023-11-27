@@ -23,43 +23,30 @@ class _DashboardViewState extends State<DashboardView> {
         future: model.getProducts(),
         builder: (context, snapshot) {
           return (snapshot.connectionState == ConnectionState.done)
-              ? Column(
-                  children: [
-                    DiscountWidget(
-                      image: Image.network(model.products![10].image),
-                      discount: '50% DE\nDESCUENTO',
-                      limitedEdition: true,
-                      onPressed: () {},
-                    ),
-                    verticalBigGap,
-                    DiscountWidget(
-                      image: Image.network(model.products![15].image),
-                      discount: '40% DE\nDESCUENTO',
-                      limitedEdition: true,
-                      onPressed: () {},
-                    ),
-                    verticalBigGap,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            model.navigateToProduct(context);
-                          },
-                          child: ProductWidget(
-                            productName: model.products![0].title,
-                            productPrice: model.products![0].price,
-                            image: Image.network(model.products![0].image),
-                          ),
-                        ),
-                        ProductWidget(
-                          productName: model.products![1].title,
-                          productPrice: model.products![1].price,
-                          image: Image.network(model.products![1].image),
-                        ),
-                      ],
-                    )
-                  ],
+              ? SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      DiscountWidget(
+                        image: Image.network(model.products![1].image),
+                        discount: '50% DE\nDESCUENTO',
+                        limitedEdition: true,
+                        onPressed: () {},
+                      ),
+                      verticalBigGap,
+                      DiscountWidget(
+                        image: Image.network(model.products![0].image),
+                        discount: '40% DE\nDESCUENTO',
+                        limitedEdition: true,
+                        onPressed: () {},
+                      ),
+                      verticalBigGap,
+                      Wrap(
+                        spacing: 20.0,
+                        runSpacing: 25.0,
+                        children: [..._buildProductsList()],
+                      )
+                    ],
+                  ),
                 )
               : const Center(
                   child: CircularProgressIndicator(
@@ -69,5 +56,21 @@ class _DashboardViewState extends State<DashboardView> {
         },
       ),
     );
+  }
+
+  List<Widget> _buildProductsList() {
+    List<Widget> widgets = [];
+
+    for (var i = 2; i < model.products!.length - 2; i++) {
+      widgets.add(
+        ProductWidget(
+          productName: model.products![i].title,
+          productPrice: model.products![i].price,
+          image: Image.network(model.products![i].image),
+        ),
+      );
+    }
+
+    return widgets;
   }
 }
