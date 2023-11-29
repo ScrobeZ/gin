@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:gin/constants/strings.dart';
+import 'package:gin/models/cart.dart' as cart;
 import 'package:gin/models/product.dart';
 
 class FakeStoreService {
@@ -10,7 +11,7 @@ class FakeStoreService {
       if (response.statusCode == 200 && response.data != null) {
         final product = Product.fromJson(response.data);
         return product;
-      } 
+      }
     } on DioException catch (e) {
       return e.response!.data;
     }
@@ -35,6 +36,19 @@ class FakeStoreService {
       if (response.statusCode == 200 && response.data != null) {
         final List<dynamic> list = response.data;
         return list.map((e) => e.toString()).toList();
+      }
+    } on DioException catch (e) {
+      return e.response!.data;
+    }
+  }
+
+  Future<dynamic> getCart() async {
+    try {
+      final response = await _dio.get('$fakeStoreURL/carts/5');
+      if (response.statusCode == 200 && response.data != null) {
+        final cartProducts = cart.Cart.fromJson(response.data);
+        print(cartProducts.userId);
+        return cartProducts;
       }
     } on DioException catch (e) {
       return e.response!.data;
