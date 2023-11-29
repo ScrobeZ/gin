@@ -4,16 +4,17 @@ import 'package:gin/models/product.dart';
 import 'package:gin/services/fake_store_services.dart';
 import 'package:go_router/go_router.dart';
 
-class DashboardViewModel {
+class CategoryProductsViewModel {
   List<Product>? products;
 
   final FakeStoreService _fakeStoreService = FakeStoreService();
 
-  Future<void> getProducts() async {
-    products = await _fakeStoreService.getProducts();
+  Future<void> getProducts(String category) async {
+    products =
+        await _fakeStoreService.getProducts(category: '/category/$category');
   }
 
-  navigateToProduct(BuildContext context) {
-    context.push(productRoute);
+  navigateToHome(BuildContext context) {
+    context.go(homeRoute);
   }
 }
