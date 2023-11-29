@@ -64,6 +64,9 @@ class _DashboardViewState extends State<DashboardView> {
     for (var i = 2; i < model.products!.length - 2; i++) {
       widgets.add(
         ProductWidget(
+          onPressed: () {
+            model.navigateToProduct(context, model.products![i].id);
+          },
           productName: model.products![i].title,
           productPrice: model.products![i].price,
           image: Image.network(model.products![i].image),
