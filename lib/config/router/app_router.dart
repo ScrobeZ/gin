@@ -5,7 +5,7 @@ import 'package:gin/views/categories/categoryProducts/categoryProducts_view.dart
 import 'package:gin/views/home/dashboard/dashboard_view.dart';
 import 'package:gin/views/home/home_view.dart';
 
-import 'package:gin/views/home/product/product_view.dart';
+import 'package:gin/views/product/product_view.dart';
 import 'package:gin/views/shopping_cart/shopping_cart_view.dart';
 import 'package:gin/views/login/login_view.dart';
 import 'package:gin/views/login/register_view.dart';
@@ -65,8 +65,13 @@ final GoRouter appRouter = GoRouter(
           builder: (context, state) => const ShoppingCartView(),
         ),
         GoRoute(
-          path: productRoute,
-          builder: (context, state) => const ProductView(),
+          path: '$productRoute/:idProduct',
+          builder: (context, state) {
+            print(state.pathParameters['idProduct']);
+            return ProductView(
+              id: int.tryParse(state.pathParameters['idProduct']!) ?? 1,
+            );
+          },
         )
       ],
     ),
