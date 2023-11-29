@@ -17,4 +17,8 @@ class CategoryProductsViewModel {
   navigateToHome(BuildContext context) {
     context.go(homeRoute);
   }
+
+  navigateToProduct(BuildContext context, int id) {
+    context.push('$productRoute/$id');
+  }
 }

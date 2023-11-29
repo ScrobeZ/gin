@@ -13,7 +13,7 @@ class DashboardViewModel {
     products = await _fakeStoreService.getProducts();
   }
 
-  navigateToProduct(BuildContext context) {
-    context.push(productRoute);
+  navigateToProduct(BuildContext context, int id) {
+    context.push('$productRoute/$id');
   }
 }

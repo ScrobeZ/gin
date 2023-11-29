@@ -66,6 +66,9 @@ class _CategoryProductsViewState extends State<CategoryProductsView> {
     for (var i = 0; i < model.products!.length; i++) {
       widgets.add(
         ProductWidget(
+          onPressed: () {
+            model.navigateToProduct(context, model.products![i].id);
+          },
           productName: model.products![i].title,
           productPrice: model.products![i].price,
           image: Image.network(model.products![i].image),
