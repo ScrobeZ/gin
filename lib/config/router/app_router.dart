@@ -7,6 +7,7 @@ import 'package:gin/views/home/home_view.dart';
 
 import 'package:gin/views/home/product/product_view.dart';
 import 'package:gin/views/home/shopping_cart/shopping_cart_view.dart';
+import 'package:gin/views/login/login_view.dart';
 import 'package:gin/views/login/register_view.dart';
 import 'package:gin/views/startup/startup_view.dart';
 import 'package:go_router/go_router.dart';
@@ -27,7 +28,7 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(
       path: loginRoute,
-      builder: (context, state) => const ProductView(),
+      builder: (context, state) => const LoginView(),
     ),
     GoRoute(
       path: registerRoute,
