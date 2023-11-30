@@ -6,4 +6,8 @@ class DrawerViewModel {
   navigateToCategory(BuildContext context) {
     context.push(categoryRoute);
   }
+
+  navigateToHome(BuildContext context) {
+    context.push(dashboardRoute);
+  }
 }

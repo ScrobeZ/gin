@@ -24,11 +24,11 @@ class _DrawerViewState extends State<DrawerView> {
         children: [
           verticalMicroGap,
           verticalMicroGap,
-          Text(
+          const Text(
             'Bienvenido',
             style: TextStyle(color: Colors.white, fontSize: 35),
           ),
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Icon(
@@ -46,7 +46,29 @@ class _DrawerViewState extends State<DrawerView> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Icon(
+              const Icon(
+                Icons.home_rounded,
+                color: Colors.white,
+                size: 30,
+              ),
+              CustomTextButton(
+                text: 'Inicio',
+                fontSize: 20,
+                textColor: Colors.white,
+                color: Colors.transparent,
+                heigth: 50,
+                width: 150,
+                onPressed: () {
+                  model.navigateToHome(context);
+                },
+              ),
+            ],
+          ),
+          verticalBigGap,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const Icon(
                 Icons.apps,
                 color: Colors.white,
                 size: 30,
