@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gin/constants/colors.dart';
 import 'package:gin/views/home/drawer/drawer_view_model.dart';
-import 'package:gin/views/widgets/custom_text_button.dart';
 import 'package:gin/constants/gaps.dart';
 
 class DrawerView extends StatefulWidget {
@@ -43,50 +42,60 @@ class _DrawerViewState extends State<DrawerView> {
             ],
           ),
           verticalBigGap,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Icon(
-                Icons.home_rounded,
-                color: Colors.white,
-                size: 30,
-              ),
-              CustomTextButton(
-                text: 'Inicio',
-                fontSize: 20,
-                textColor: Colors.white,
-                color: Colors.transparent,
-                heigth: 50,
-                width: 150,
-                onPressed: () {
-                  model.navigateToHome(context);
-                },
-              ),
-            ],
+          _buildDrawerButton(
+            context,
+            'Inicio',
+            model.isHome,
+            Icons.home_rounded,
+            () {
+              model.navigateToHome(context);
+            },
           ),
           verticalBigGap,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          _buildDrawerButton(
+            context,
+            'Categoria',
+            model.isCategory,
+            Icons.apps_rounded,
+            () {
+              model.navigateToCategory(context);
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+  GestureDetector _buildDrawerButton(
+    BuildContext context,
+    String text,
+    bool enable,
+    IconData iconData,
+    Function() onPressed,
+  ) {
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        width: 300,
+        height: 50,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Icon(
-                Icons.apps,
-                color: Colors.white,
+              Icon(
+                iconData,
                 size: 30,
+                color: Colors.white,
               ),
-              CustomTextButton(
-                text: 'Categorias',
-                fontSize: 20,
-                textColor: Colors.white,
-                color: Colors.transparent,
-                heigth: 50,
-                width: 150,
-                onPressed: () {
-                  model.navigateToCategory(context);
-                },
+              horizontalBigGap,
+              Text(
+                text,
+                style: TextStyle(fontSize: 20, color: Colors.white),
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }

@@ -11,6 +11,10 @@ const SizedBox horizontalStandardGap = SizedBox(
   width: 12,
 );
 
+const SizedBox horizontalBigGap = SizedBox(
+  width: 30,
+);
+
 const SizedBox horizontalSmallGap = SizedBox(
-  width: 8,
+  width: 10,
 );
