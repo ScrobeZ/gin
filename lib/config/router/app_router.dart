@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gin/constants/strings.dart';
 import 'package:gin/views/categories/category_view.dart';
-import 'package:gin/views/categories/categoryProducts/categoryProducts_view.dart';
+import 'package:gin/views/categories/categoryProducts/category_products_view.dart';
 import 'package:gin/views/home/dashboard/dashboard_view.dart';
 import 'package:gin/views/home/home_view.dart';
 
@@ -44,12 +44,8 @@ final GoRouter appRouter = GoRouter(
       },
       routes: <RouteBase>[
         GoRoute(
-          path: dashboardRoute,
-          builder: (context, state) => DashboardView(),
-        ),
-        GoRoute(
           path: categoryRoute,
-          builder: (context, state) => CategoryView(),
+          builder: (context, state) => const CategoryView(),
         ),
         GoRoute(
           path: '$categoryProductsRoute/:category',
@@ -58,7 +54,7 @@ final GoRouter appRouter = GoRouter(
         ),
         GoRoute(
           path: dashboardRoute,
-          builder: (context, state) => DashboardView(),
+          builder: (context, state) => const DashboardView(),
         ),
         GoRoute(
           path: shoppingCartRoute,
@@ -67,7 +63,6 @@ final GoRouter appRouter = GoRouter(
         GoRoute(
           path: '$productRoute/:idProduct',
           builder: (context, state) {
-            print(state.pathParameters['idProduct']);
             return ProductView(
               id: int.tryParse(state.pathParameters['idProduct']!) ?? 1,
             );

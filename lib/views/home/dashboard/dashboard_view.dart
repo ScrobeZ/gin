@@ -6,7 +6,7 @@ import 'package:gin/views/home/widgets/discount_widget.dart';
 import 'package:gin/views/home/widgets/product_widget.dart';
 
 class DashboardView extends StatefulWidget {
-  DashboardView({super.key});
+  const DashboardView({super.key});
 
   @override
   State<DashboardView> createState() => _DashboardViewState();

@@ -25,7 +25,7 @@ class CategoryWidget extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
+            SizedBox(
               height: 115,
               width: 100,
               child: _categoryImage(),
