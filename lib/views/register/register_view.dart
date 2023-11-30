@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gin/constants/colors.dart';
 import 'package:gin/constants/gaps.dart';
-import 'package:gin/views/login/register_view_model.dart';
+import 'package:gin/views/register/register_view_model.dart';
 import 'package:gin/views/widgets/custom_text_button.dart';
 import 'package:gin/views/widgets/custom_text_form_field.dart';
 
@@ -22,10 +22,8 @@ class _RegisterViewState extends State<RegisterView> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: primaryBlack,
-          title: const Text(
-            'Iniciar sesión',
-            style: TextStyle(color: Colors.white)
-            ),
+          title: const Text('Iniciar sesión',
+              style: TextStyle(color: Colors.white)),
           iconTheme: const IconThemeData(color: Colors.white),
         ),
         backgroundColor: primaryBlack,
@@ -66,9 +64,11 @@ class _RegisterViewState extends State<RegisterView> {
         ),
         verticalBigGap,
         verticalBigGap,
-        CustomTextButton(text: 'REGISTRAR', onPressed: () {
-          model.navigateToHome(context);
-        }),
+        CustomTextButton(
+            text: 'REGISTRAR',
+            onPressed: () {
+              model.navigateToHome(context);
+            }),
       ],
     );
   }

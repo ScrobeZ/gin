@@ -55,17 +55,17 @@ class _ProductViewState extends State<ProductView> {
           children: <Widget>[
             Text(
               product.title,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
             ),
             verticalBigGap,
             Text(
               product.description,
             ),
             verticalBigGap,
-            Text("Precio"),
+            const Text("Precio"),
             Text(
               "\$${product.price}",
-              style: TextStyle(fontSize: 15),
+              style: const TextStyle(fontSize: 15),
             ),
           ],
         ),

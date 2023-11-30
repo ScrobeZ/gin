@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gin/constants/colors.dart';
 import 'package:gin/views/home/drawer/drawer_view.dart';
 import 'package:gin/views/home/home_view_model.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key, required this.child});
@@ -17,10 +16,10 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final GlobalKey<ScaffoldState> _key = GlobalKey();
+    final GlobalKey<ScaffoldState> key = GlobalKey();
     return SafeArea(
       child: Scaffold(
-        key: _key,
+        key: key,
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: primaryBlack,
@@ -57,7 +56,7 @@ class _HomeViewState extends State<HomeView> {
             ),
           ],
         ),
-        drawer: DrawerView(),
+        drawer: const DrawerView(),
         body: widget.child,
       ),
     );

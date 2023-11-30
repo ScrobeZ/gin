@@ -30,9 +30,9 @@ class DiscountWidget extends StatelessWidget {
           children: [
             Container(
               color: Colors.white,
-              child: image,
               height: 150,
               width: 150,
+              child: image,
             ),
             horizontalSmallGap,
             Column(

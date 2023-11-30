@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gin/config/helpers/translations.dart';
 import 'package:gin/constants/colors.dart';
-import 'package:gin/views/categories/categoryProducts/categoryProducts_viewmodel.dart';
+import 'package:gin/views/categories/categoryProducts/category_products_viewmodel.dart';
 import 'package:gin/views/home/widgets/product_widget.dart';
 
 class CategoryProductsView extends StatefulWidget {
