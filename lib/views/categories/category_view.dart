@@ -14,12 +14,6 @@ class _CategoryViewState extends State<CategoryView> {
   final CategoryViewModel model = CategoryViewModel();
 
   @override
-  void initState() {
-    super.initState();
-    model.getCategories();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 25),
