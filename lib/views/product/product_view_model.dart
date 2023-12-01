@@ -7,4 +7,6 @@ class ProductViewModel {
   Future<Product> getProduct(int id) async {
     return await _fakeStoreService.getProduct(id);
   }
+
+
 }

@@ -52,7 +52,14 @@ class _CategoryProductsViewState extends State<CategoryProductsView> {
             child: Wrap(
               spacing: 20.0,
               runSpacing: 25.0,
-              children: [..._buildProductsList()],
+              children: [..._buildProductsList(),
+              IconButton(onPressed: () {},
+                icon: const Icon(Icons.favorite_border_outlined),
+                style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(primaryBlack),
+                    iconColor: MaterialStatePropertyAll(pink)),)
+            ],
+
             ),
           ),
         ],

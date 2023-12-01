@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gin/constants/colors.dart';
 import 'package:gin/constants/gaps.dart';
@@ -49,36 +50,38 @@ class _ProductViewState extends State<ProductView> {
             width: 200,
           ),
         ),
-        verticalBigGap,
+            ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(Icons.favorite_border_outlined),
+                  label: const Text('Favorito')),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+                        Text(
               product.title,
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
             ),
-            verticalBigGap,
             Text(
               product.description,
             ),
-            verticalBigGap,
-            Text("Precio"),
+            Text("Precio",  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w800)),
             Text(
               "\$${product.price}",
-              style: TextStyle(fontSize: 15),
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w800),
             ),
           ],
         ),
-        verticalBigGap,
+       
         CustomTextButton(
           text: 'AÑADIR AL CARRO',
           onPressed: () {},
           heigth: 50,
-          color: Colors.pink.shade100,
+          color: pink,
           fontSize: 14,
           width: 150,
         ),
-      ],
+
+            ],
     );
   }
 }

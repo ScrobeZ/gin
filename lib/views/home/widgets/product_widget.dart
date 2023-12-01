@@ -40,7 +40,7 @@ class ProductWidget extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 '\$ $productPrice',
-                style: const TextStyle(fontSize: 12),
+                style: const TextStyle(fontSize: 13),
               ),
             ),
           ],
