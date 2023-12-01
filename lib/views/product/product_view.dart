@@ -78,9 +78,8 @@ class _ProductViewState extends State<ProductView> {
           heigth: 50,
           color: pink,
           fontSize: 14,
-          width: 150,
+          width: 151,
         ),
-
             ],
     );
   }
