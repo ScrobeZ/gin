@@ -1,10 +1,12 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gin/constants/colors.dart';
 import 'package:gin/constants/gaps.dart';
 import 'package:gin/models/product.dart';
 import 'package:gin/views/product/product_view_model.dart';
 import 'package:gin/views/widgets/custom_text_button.dart';
+
+import '../categories/favoritos/favoritos_view.dart';
+import '../shopping_cart/shopping_cart_view.dart';
 
 class ProductView extends StatefulWidget {
   const ProductView({super.key, required this.id});
@@ -22,7 +24,7 @@ class _ProductViewState extends State<ProductView> {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(20.0),
           child: FutureBuilder(
             future: model.getProduct(widget.id),
             builder: (context, snapshot) {
@@ -70,14 +72,19 @@ class _ProductViewState extends State<ProductView> {
        
         CustomTextButton(
           text: 'AÑADIR AL CARRO',
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ShoppingCartView()), );
+          },
           heigth: 50,
           color: pink,
           fontSize: 14,
           width: 151,
         ),
          ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: (
+                  ) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CategoFavs()));
+                  },
                   icon: const Icon(Icons.favorite_border_outlined),
                   label: const Text('Favorito')),
         IconButton(style: const ButtonStyle( minimumSize: MaterialStatePropertyAll(
