@@ -50,10 +50,6 @@ class _ProductViewState extends State<ProductView> {
             width: 200,
           ),
         ),
-            ElevatedButton.icon(
-                  onPressed: () {},
-                  icon: const Icon(Icons.favorite_border_outlined),
-                  label: const Text('Favorito')),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -80,7 +76,23 @@ class _ProductViewState extends State<ProductView> {
           fontSize: 14,
           width: 151,
         ),
+         ElevatedButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(Icons.favorite_border_outlined),
+                  label: const Text('Favorito')),
+        IconButton(style: const ButtonStyle( minimumSize: MaterialStatePropertyAll(
+        Size(5, 5)),backgroundColor:   MaterialStatePropertyAll( Colors.red), ),
+        padding: const EdgeInsets.all(1),onPressed: () {},
+        icon: const Icon( Icons.remove, color: primaryBlack, size: 15,)),
+        IconButton(
+          style: const ButtonStyle( 
+            minimumSize: MaterialStatePropertyAll(
+        Size(5, 5)),backgroundColor:  
+         MaterialStatePropertyAll( Colors.green), ),
+        padding: const EdgeInsets.all(1), alignment: Alignment.centerRight,
+        onPressed: () {},
+        icon: const Icon( Icons.add, color: primaryBlack, size: 15,))
             ],
-    );
+          );
   }
 }
