@@ -20,9 +20,11 @@ class _LoginViewState extends State<LoginView> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: primaryBlack,
-        body: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: _buildBody(size, model),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: _buildBody(size, model),
+          ),
         ),
       ),
     );

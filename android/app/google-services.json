@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1001186512344",
+    "project_id": "ginapp-c82f3",
+    "storage_bucket": "ginapp-c82f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001186512344:android:008be5321121a2f46ff6ad",
+        "android_client_info": {
+          "package_name": "com.example.gin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC15fiMwb2OVRSsVCtwGRT4VlP3bWvH8r8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
