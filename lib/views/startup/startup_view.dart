@@ -10,12 +10,20 @@ class StartUpView extends StatefulWidget {
 }
 
 class _StartUpViewState extends State<StartUpView> {
+  final model = StartUpViewModel();
+
+  @override
+  void initState() {
+    super.initState();
+    model.checkUser(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final model = StartUpViewModel();
-    Future.delayed(const Duration(seconds: 3), () {
-      model.navigateToLogin(context);
-    });
+    return _buildBody();
+  }
+
+  Scaffold _buildBody() {
     return Scaffold(
       backgroundColor: primaryBlack,
       body: Center(
