@@ -54,4 +54,26 @@ class FakeStoreService {
       return e.response!.data;
     }
   }
+
+  Future getProductByNameTest(String name) async {
+  try {
+    final response = await _dio.get('$fakeStoreURL/products');
+
+    if (response.statusCode == 200 && response.data != null) {
+      List<dynamic> products = response.data;
+
+      List<dynamic> filteredProducts = products
+          .where((product) => product['title'].toString().toLowerCase().contains(name.toLowerCase()))
+          .toList();
+      
+      return filteredProducts.map(
+        (obj) => Product.fromJson(obj)
+      ).toList();
+    }
+  } on DioException catch (e) {
+    return e;
+  }
 }
+}
+
+
