@@ -26,12 +26,11 @@ class FirebaseAuthService {
     try {
       UserCredential credential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      print(credential.user?.displayName);
-      return credential.user;
+      print('Usuario: ${credential.user!.displayName}');
+      return credential;
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'invalid-password') {
-        return 'Contraseña muy débil, tiene que ser al menos 6 caracteres';
-      }
+      print(e.toString());
+      return 'Correo eléctronico o contraseña erronea';
     }
   }
 }
