@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gin/constants/colors.dart';
+import 'package:gin/views/home/delegates/search_product_delegate.dart';
 import 'package:gin/views/home/drawer/drawer_view.dart';
 import 'package:gin/views/home/home_view_model.dart';
 
@@ -66,21 +67,16 @@ class _HomeViewState extends State<HomeView> {
     return SizedBox(
       width: size.width * 0.60,
       height: 30,
-      child: const TextField(
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(
-              Radius.circular(50),
-            ),
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.white,
           ),
-          contentPadding: EdgeInsets.symmetric(horizontal: 16),
-          fillColor: Colors.white,
-          filled: true,
-          hintText: '¿Algo en especifico?',
-          hintStyle: TextStyle(color: primaryBlack, fontSize: 12),
-        ),
-        style: TextStyle(fontSize: 12),
-      ),
+          onPressed: () {
+            showSearch(context: context, delegate: SearchProductDelegate());
+          },
+          child: const Text('¿Buscabas algo en específico?',
+              style: TextStyle(color: Colors.grey))),
     );
   }
 }
