@@ -66,35 +66,6 @@ class _LoginViewState extends State<LoginView> {
           ),
         ),
         verticalBigGap,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Checkbox(
-              checkColor: Colors.black,
-              fillColor: const MaterialStatePropertyAll(Colors.white),
-              value: model.rememberPassword,
-              onChanged: (value) => setState(
-                () {
-                  model.rememberPasswordChanged();
-                },
-              ),
-            ),
-            GestureDetector(
-              onTap: () => setState(
-                () {
-                  model.rememberPasswordChanged();
-                },
-              ),
-              child: const Text(
-                'Recordar contraseña',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                ),
-              ),
-            )
-          ],
-        ),
         verticalBigGap,
         CustomTextButton(
           text: 'INICIAR SESIÓN',

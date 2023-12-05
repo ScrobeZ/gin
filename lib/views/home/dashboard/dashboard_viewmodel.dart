@@ -16,4 +16,8 @@ class DashboardViewModel {
   navigateToProduct(BuildContext context, int id) {
     context.push('$productRoute/$id');
   }
+
+  Future<bool> addCart(int id) async {
+    return await _fakeStoreService.addCart(id);
+  }
 }

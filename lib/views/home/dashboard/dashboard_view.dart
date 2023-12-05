@@ -30,14 +30,18 @@ class _DashboardViewState extends State<DashboardView> {
                         image: Image.network(model.products![1].image),
                         discount: '50% DE\nDESCUENTO',
                         limitedEdition: true,
-                        onPressed: () {},
+                        onPressed: () {
+                          model.addCart(model.products![1].id);
+                        },
                       ),
                       verticalBigGap,
                       DiscountWidget(
                         image: Image.network(model.products![0].image),
                         discount: '40% DE\nDESCUENTO',
                         limitedEdition: true,
-                        onPressed: () {},
+                        onPressed: () {
+                          model.addCart(model.products![0].id);
+                        },
                       ),
                       verticalBigGap,
                       Wrap(

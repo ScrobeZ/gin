@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gin/constants/colors.dart';
 import 'package:gin/views/shopping_cart/shopping_cart_view_model.dart';
+import 'package:gin/views/widgets/custom_snackbar.dart';
 import 'package:gin/views/widgets/custom_text_button.dart';
 
-class ShoppingCartView extends StatefulWidget {
+class ShoppingCartView extends StatefulWidget with CustomSnackbar {
   const ShoppingCartView({super.key});
 
   @override
@@ -18,6 +19,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryBlack,
+        iconTheme: IconThemeData(color: Colors.white),
         title: const Text(
           'Carrito de compras',
           style: TextStyle(color: Colors.white),
@@ -113,6 +115,14 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
                             onPressed: () {
                               setState(() {
                                 model.purchase();
+                                model.navigateToHome(context);
+                                return widget.toShowSnackBarCustom(
+                                  context,
+                                  color: Colors.red,
+                                  snackBarContent: Center(
+                                    child: Text('Compra exitosa!'),
+                                  ),
+                                );
                               });
                             })
                       ],
