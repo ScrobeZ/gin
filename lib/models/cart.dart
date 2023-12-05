@@ -7,7 +7,7 @@ class Cart {
   int id;
   int userId;
   String date;
-  List<Product> products;
+  List<CartProduct> products;
 
   Cart({
     required this.id,
@@ -22,17 +22,17 @@ class Cart {
 }
 
 @JsonSerializable()
-class Product {
+class CartProduct {
   int productId;
   int quantity;
 
-  Product({
+  CartProduct({
     required this.productId,
     required this.quantity,
   });
 
-  factory Product.fromJson(Map<String, dynamic> json) =>
-      _$ProductFromJson(json);
+  factory CartProduct.fromJson(Map<String, dynamic> json) =>
+      _$CartProductFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ProductToJson(this);
+  Map<String, dynamic> toJson() => _$CartProductToJson(this);
 }

@@ -13,7 +13,7 @@ class _StartUpViewState extends State<StartUpView> {
   final model = StartUpViewModel();
 
   @override
-  void initState() {
+  initState() {
     super.initState();
     model.checkUser(context);
   }

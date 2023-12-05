@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gin/constants/colors.dart';
 import 'package:gin/views/shopping_cart/shopping_cart_view_model.dart';
+import 'package:gin/views/widgets/custom_snackbar.dart';
+import 'package:gin/views/widgets/custom_text_button.dart';
 
-class ShoppingCartView extends StatefulWidget {
+class ShoppingCartView extends StatefulWidget with CustomSnackbar {
   const ShoppingCartView({super.key});
 
   @override
@@ -17,100 +19,124 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryBlack,
+        iconTheme: IconThemeData(color: Colors.white),
         title: const Text(
           'Carrito de compras',
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: Container(
-        child: !model.isAnyProducts
-            ? FutureBuilder(
-                future: model.getCart(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return Center(
-                      child: ListView.builder(
-                        itemCount: model.cart.products.length,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            leading: Image.network(
-                              snapshot.data![index].image,
-                              fit: BoxFit.contain,
-                              height: 50,
-                              width: 50,
-                            ),
-                            title: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                SizedBox(
-                                  width: size.width * 0.4,
-                                  child: Text(
-                                    snapshot.data![index].title,
-                                    style: const TextStyle(fontSize: 12),
-                                    maxLines: 3,
-                                  ),
+      body: FutureBuilder(
+        future: model.checkIfIstherProducts(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return Center(
+              child: (snapshot.data!)
+                  ? Column(
+                      children: [
+                        SizedBox(
+                          height: size.height * 0.7,
+                          child: ListView.builder(
+                            itemCount: model.products.length,
+                            itemBuilder: (context, index) {
+                              return ListTile(
+                                leading: Image.network(
+                                  model.products[index].image,
+                                  fit: BoxFit.contain,
+                                  height: 50,
+                                  width: 50,
                                 ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
+                                title: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: [
-                                    IconButton(
-                                      style: const ButtonStyle(
-                                        minimumSize: MaterialStatePropertyAll(
-                                            Size(5, 5)),
-                                        backgroundColor:
-                                            MaterialStatePropertyAll(
-                                                Colors.red),
-                                      ),
-                                      padding: const EdgeInsets.all(1),
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.remove,
-                                        color: primaryBlack,
-                                        size: 15,
+                                    SizedBox(
+                                      width: size.width * 0.4,
+                                      child: Text(
+                                        model.products[index].title,
+                                        style: const TextStyle(fontSize: 12),
+                                        maxLines: 3,
                                       ),
                                     ),
-                                    Text(
-                                        '${model.cart.products[index].quantity}'),
-                                    IconButton(
-                                      style: const ButtonStyle(
-                                        minimumSize: MaterialStatePropertyAll(
-                                            Size(5, 5)),
-                                        backgroundColor:
-                                            MaterialStatePropertyAll(
-                                                Colors.green),
-                                      ),
-                                      padding: const EdgeInsets.all(1),
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.add,
-                                        color: primaryBlack,
-                                        size: 15,
-                                      ),
-                                    )
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        IconButton(
+                                          style: const ButtonStyle(
+                                            minimumSize:
+                                                MaterialStatePropertyAll(
+                                                    Size(5, 5)),
+                                            backgroundColor:
+                                                MaterialStatePropertyAll(
+                                                    Colors.red),
+                                          ),
+                                          padding: const EdgeInsets.all(1),
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            Icons.remove,
+                                            color: primaryBlack,
+                                            size: 15,
+                                          ),
+                                        ),
+                                        Text('${1}'),
+                                        IconButton(
+                                          style: const ButtonStyle(
+                                            minimumSize:
+                                                MaterialStatePropertyAll(
+                                                    Size(5, 5)),
+                                            backgroundColor:
+                                                MaterialStatePropertyAll(
+                                                    Colors.green),
+                                          ),
+                                          padding: const EdgeInsets.all(1),
+                                          onPressed: () {},
+                                          icon: const Icon(
+                                            Icons.add,
+                                            color: primaryBlack,
+                                            size: 15,
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ],
                                 ),
-                              ],
-                            ),
-                            subtitle: Text(
-                              '\$${snapshot.data![index].price}',
-                              style: const TextStyle(fontSize: 10),
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(
-                        color: primaryBlack,
-                      ),
-                    );
-                  }
-                },
-              )
-            : const Center(
-                child: Text('Aun no hay productos'),
+                                subtitle: Text(
+                                  '\$${model.products[index].price}',
+                                  style: const TextStyle(fontSize: 10),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        CustomTextButton(
+                            color: primaryBlack,
+                            textColor: Colors.white,
+                            text: 'Comprar',
+                            onPressed: () {
+                              setState(() {
+                                model.purchase();
+                                model.navigateToHome(context);
+                                return widget.toShowSnackBarCustom(
+                                  context,
+                                  color: Colors.red,
+                                  snackBarContent: Center(
+                                    child: Text('Compra exitosa!'),
+                                  ),
+                                );
+                              });
+                            })
+                      ],
+                    )
+                  : Text('No hay productos'),
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: primaryBlack,
               ),
+            );
+          }
+        },
       ),
     );
   }

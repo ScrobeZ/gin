@@ -47,12 +47,7 @@ class _HomeViewState extends State<HomeView> {
                 color: Colors.white,
               ),
               onPressed: () {
-                setState(() {
-                  if (model.isDashboard) {
-                    model.changeIsDashboard(context);
-                    model.navigateToShoppingCart(context);
-                  } else {}
-                });
+                model.navigateToShoppingCart(context);
               },
             ),
           ],

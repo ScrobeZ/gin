@@ -72,7 +72,9 @@ class _ProductViewState extends State<ProductView> {
         verticalBigGap,
         CustomTextButton(
           text: 'AÑADIR AL CARRO',
-          onPressed: () {},
+          onPressed: () {
+            model.addCart(product.id);
+          },
           heigth: 50,
           color: Colors.pink.shade100,
           fontSize: 14,
