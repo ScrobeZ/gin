@@ -68,19 +68,16 @@ class _HomeViewState extends State<HomeView> {
     return SizedBox(
       width: size.width * 0.60,
       height: 30,
-      child: 
-      ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: lightGray,
-          foregroundColor: Colors.white,
-        ),
-        onPressed: () {
-          showSearch(context: context, delegate: SearchProductDelegate());
-        },
-        child: const Text(
-          'Buscar un producto',
-          style: TextStyle(color: Colors.black)
-        )),
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.white,
+          ),
+          onPressed: () {
+            showSearch(context: context, delegate: SearchProductDelegate());
+          },
+          child: const Text('¿Buscabas algo en específico?',
+              style: TextStyle(color: Colors.grey))),
     );
   }
 }
