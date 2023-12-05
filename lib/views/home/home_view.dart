@@ -47,12 +47,7 @@ class _HomeViewState extends State<HomeView> {
                 color: Colors.white,
               ),
               onPressed: () {
-                setState(() {
-                  if (model.isDashboard) {
-                    model.changeIsDashboard(context);
-                    model.navigateToShoppingCart(context);
-                  } else {}
-                });
+                model.navigateToShoppingCart(context);
               },
             ),
           ],
@@ -67,19 +62,16 @@ class _HomeViewState extends State<HomeView> {
     return SizedBox(
       width: size.width * 0.60,
       height: 30,
-      child: 
-      ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: lightGray,
-          foregroundColor: Colors.white,
-        ),
-        onPressed: () {
-          showSearch(context: context, delegate: SearchProductDelegate());
-        },
-        child: const Text(
-          'Buscar un producto',
-          style: TextStyle(color: Colors.black)
-        )),
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: lightGray,
+            foregroundColor: Colors.white,
+          ),
+          onPressed: () {
+            showSearch(context: context, delegate: SearchProductDelegate());
+          },
+          child: const Text('Buscar un producto',
+              style: TextStyle(color: Colors.black))),
     );
   }
 }

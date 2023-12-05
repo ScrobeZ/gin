@@ -1,27 +1,45 @@
-import 'package:gin/models/cart.dart' as shopping_cart;
 import 'package:gin/models/product.dart';
 import 'package:gin/services/fake_store_services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ShoppingCartViewModel {
   bool isAnyProducts = false;
   bool isBusy = false;
-  late shopping_cart.Cart cart;
+  List<Product> products = [];
 
   final FakeStoreService _fakeStoreService = FakeStoreService();
 
   Future<List<Product>> getCart() async {
-    cart = await _fakeStoreService.getCart();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    final List<int> ids;
-
-    List<Product> products = [];
-
-    ids = cart.products.map((e) => e.productId).toList();
+    var ids = prefs.getStringList('cart')!.map((e) {
+      return int.tryParse(e);
+    }).toList();
 
     for (var i = 0; i < ids.length; i++) {
-      products.add(await _fakeStoreService.getProduct(ids[i]));
+      products.add(await _fakeStoreService.getProduct(ids[i]!));
     }
 
     return products;
+  }
+
+  Future<bool> checkIfIstherProducts() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    if (prefs.getStringList('cart') == null) {
+      prefs.setStringList('cart', []);
+      return false;
+    } else {
+      if (prefs.getStringList('cart')!.isEmpty) {
+        return false;
+      }
+      await getCart();
+      return true;
+    }
+  }
+
+  Future<void> purchase() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.clear();
   }
 }
