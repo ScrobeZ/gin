@@ -10,6 +10,7 @@ class Product {
   String description;
   String category;
   String image;
+  bool isFavorite;
 
   Product({
     required this.id,
@@ -18,6 +19,7 @@ class Product {
     required this.description,
     required this.category,
     required this.image,
+    this.isFavorite = false,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) =>
