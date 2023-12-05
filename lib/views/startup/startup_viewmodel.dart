@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gin/constants/strings.dart';
 import 'package:gin/services/auth_services.dart';
@@ -15,13 +16,21 @@ class StartUpViewModel {
   }
 
   Future<void> checkUser(BuildContext context) async {
-    if (_auth.instance.currentUser != null) {
-      _auth.instance.currentUser?.getIdTokenResult().then((value) {
-        Future.delayed(Duration(seconds: 2));
-        navigateToHome(context);
-      });
+    User? user = _auth.instance.currentUser;
+
+    if (user != null) {
+      // El usuario ya ha iniciado sesión
+      Future.delayed(Duration(seconds: 2)).then(
+        (value) {
+          navigateToHome(context);
+        },
+      );
     } else {
-      navigateToLogin(context);
+      Future.delayed(Duration(seconds: 2)).then(
+        (value) {
+          navigateToLogin(context);
+        },
+      );
     }
   }
 }
