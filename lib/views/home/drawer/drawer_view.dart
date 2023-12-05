@@ -60,7 +60,13 @@ class _DrawerViewState extends State<DrawerView> {
             () {
               model.navigateToCategory(context);
             },
-          )
+          ),
+          Spacer(),
+          _buildDrawerButton(context, 'Cerrar sesion', true, Icons.no_accounts,
+              () {
+            model.logOut(context);
+          }),
+          verticalMicroGap,
         ],
       ),
     );
@@ -75,7 +81,7 @@ class _DrawerViewState extends State<DrawerView> {
   ) {
     return GestureDetector(
       onTap: onPressed,
-      child: Container(
+      child: SizedBox(
         width: 300,
         height: 50,
         child: Padding(
@@ -91,7 +97,7 @@ class _DrawerViewState extends State<DrawerView> {
               horizontalBigGap,
               Text(
                 text,
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: const TextStyle(fontSize: 20, color: Colors.white),
               ),
             ],
           ),
