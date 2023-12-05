@@ -1,11 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gin/constants/colors.dart';
 import 'package:gin/constants/gaps.dart';
 import 'package:gin/views/login/login_view_model.dart';
+import 'package:gin/views/widgets/custom_snackbar.dart';
 import 'package:gin/views/widgets/custom_text_button.dart';
 import 'package:gin/views/widgets/custom_text_form_field.dart';
 
-class LoginView extends StatefulWidget {
+class LoginView extends StatefulWidget with CustomSnackbar {
   const LoginView({super.key});
 
   @override
@@ -13,6 +15,9 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   final LoginViewModel model = LoginViewModel();
   @override
   Widget build(BuildContext context) {
@@ -20,9 +25,11 @@ class _LoginViewState extends State<LoginView> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: primaryBlack,
-        body: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: _buildBody(size, model),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: _buildBody(size, model),
+          ),
         ),
       ),
     );
@@ -41,12 +48,22 @@ class _LoginViewState extends State<LoginView> {
           ),
         ),
         verticalBigGap,
-        const CustomTextFormField(
-          hintText: 'Usuario',
-        ),
-        verticalBigGap,
-        const CustomTextFormField(
-          hintText: 'Contraseña',
+        Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              CustomTextFormField(
+                controller: _emailController,
+                hintText: 'Correo eléctronico',
+              ),
+              verticalBigGap,
+              CustomTextFormField(
+                controller: _passwordController,
+                isPassword: true,
+                hintText: 'Contraseña',
+              ),
+            ],
+          ),
         ),
         verticalBigGap,
         Row(
@@ -81,8 +98,26 @@ class _LoginViewState extends State<LoginView> {
         verticalBigGap,
         CustomTextButton(
           text: 'INICIAR SESIÓN',
-          onPressed: () {
-            model.navigateToHome(context);
+          onPressed: () async {
+            if (_formKey.currentState!.validate()) {
+              await model
+                  .signIn(_emailController.text, _passwordController.text)
+                  .then(
+                (value) {
+                  if (value is UserCredential) {
+                    model.navigateToHome(context);
+                  } else {
+                    return widget.toShowSnackBarCustom(
+                      context,
+                      color: Colors.red,
+                      snackBarContent: Center(
+                        child: Text('$value'),
+                      ),
+                    );
+                  }
+                },
+              );
+            }
           },
         ),
         verticalBigGap,
