@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gin/constants/colors.dart';
+import 'package:gin/models/product.dart';
 import 'package:gin/views/shopping_cart/shopping_cart_view_model.dart';
 import 'package:gin/views/widgets/custom_snackbar.dart';
 import 'package:gin/views/widgets/custom_text_button.dart';
@@ -19,14 +20,14 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryBlack,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
           'Carrito de compras',
           style: TextStyle(color: Colors.white),
         ),
       ),
       body: FutureBuilder(
-        future: model.checkIfIstherProducts(),
+        future: model.checkIfIsthereProducts(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return Center(
@@ -36,75 +37,14 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
                         SizedBox(
                           height: size.height * 0.7,
                           child: ListView.builder(
-                            itemCount: model.products.length,
+                            itemCount: model.frecuenciaDeIds.length,
                             itemBuilder: (context, index) {
-                              return ListTile(
-                                leading: Image.network(
-                                  model.products[index].image,
-                                  fit: BoxFit.contain,
-                                  height: 50,
-                                  width: 50,
-                                ),
-                                title: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    SizedBox(
-                                      width: size.width * 0.4,
-                                      child: Text(
-                                        model.products[index].title,
-                                        style: const TextStyle(fontSize: 12),
-                                        maxLines: 3,
-                                      ),
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        IconButton(
-                                          style: const ButtonStyle(
-                                            minimumSize:
-                                                MaterialStatePropertyAll(
-                                                    Size(5, 5)),
-                                            backgroundColor:
-                                                MaterialStatePropertyAll(
-                                                    Colors.red),
-                                          ),
-                                          padding: const EdgeInsets.all(1),
-                                          onPressed: () {},
-                                          icon: const Icon(
-                                            Icons.remove,
-                                            color: primaryBlack,
-                                            size: 15,
-                                          ),
-                                        ),
-                                        Text('${1}'),
-                                        IconButton(
-                                          style: const ButtonStyle(
-                                            minimumSize:
-                                                MaterialStatePropertyAll(
-                                                    Size(5, 5)),
-                                            backgroundColor:
-                                                MaterialStatePropertyAll(
-                                                    Colors.green),
-                                          ),
-                                          padding: const EdgeInsets.all(1),
-                                          onPressed: () {},
-                                          icon: const Icon(
-                                            Icons.add,
-                                            color: primaryBlack,
-                                            size: 15,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                subtitle: Text(
-                                  '\$${model.products[index].price}',
-                                  style: const TextStyle(fontSize: 10),
-                                ),
-                              );
+                              return ProductTile(
+                                  product: model.products[index],
+                                  quantity: model.frecuenciaDeIds[
+                                          model.products[index].id] ??
+                                      1,
+                                  size: size);
                             },
                           ),
                         ),
@@ -120,8 +60,8 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
                                 return widget.toShowSnackBarCustom(
                                   context,
                                   color: Colors.green,
-                                  snackBarContent: Center(
-                                    child: Text('Compra exitosa!'),
+                                  snackBarContent: const Center(
+                                    child: Text('¡Compra exitosa!'),
                                   ),
                                 );
                               },
@@ -130,7 +70,7 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
                         )
                       ],
                     )
-                  : Text('No hay productos'),
+                  : const Text('No hay productos'),
             );
           } else {
             return const Center(
@@ -140,6 +80,80 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
             );
           }
         },
+      ),
+    );
+  }
+}
+
+class ProductTile extends StatelessWidget {
+  const ProductTile({
+    super.key,
+    required this.product,
+    required this.quantity,
+    required this.size,
+  });
+
+  final Product product;
+  final int quantity;
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Image.network(
+        product.image,
+        fit: BoxFit.contain,
+        height: 50,
+        width: 50,
+      ),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          SizedBox(
+            width: size.width * 0.4,
+            child: Text(
+              product.title,
+              style: const TextStyle(fontSize: 12),
+              maxLines: 3,
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              IconButton(
+                style: const ButtonStyle(
+                  minimumSize: MaterialStatePropertyAll(Size(5, 5)),
+                  backgroundColor: MaterialStatePropertyAll(Colors.red),
+                ),
+                padding: const EdgeInsets.all(1),
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.remove,
+                  color: primaryBlack,
+                  size: 15,
+                ),
+              ),
+              Text('$quantity'),
+              IconButton(
+                style: const ButtonStyle(
+                  minimumSize: MaterialStatePropertyAll(Size(5, 5)),
+                  backgroundColor: MaterialStatePropertyAll(Colors.green),
+                ),
+                padding: const EdgeInsets.all(1),
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.add,
+                  color: primaryBlack,
+                  size: 15,
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
+      subtitle: Text(
+        '\$${product.price}',
+        style: const TextStyle(fontSize: 10),
       ),
     );
   }

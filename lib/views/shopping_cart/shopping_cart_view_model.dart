@@ -9,24 +9,33 @@ class ShoppingCartViewModel {
   bool isAnyProducts = false;
   bool isBusy = false;
   List<Product> products = [];
+  Map<int, int> frecuenciaDeIds = {};
 
   final FakeStoreService _fakeStoreService = FakeStoreService();
 
-  Future<List<Product>> getCart() async {
+  Future<void> getCart() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    var ids = prefs.getStringList('cart')!.map((e) {
-      return int.tryParse(e);
-    }).toList();
+    List<int>? listaDeIds = prefs
+        .getStringList('cart')!
+        .map((e) {
+          return int.tryParse(e);
+        })
+        .cast<int>()
+        .toList();
 
-    for (var i = 0; i < ids.length; i++) {
-      products.add(await _fakeStoreService.getProduct(ids[i]!));
+    for (int id in listaDeIds) {
+      frecuenciaDeIds[id] = (frecuenciaDeIds[id] ?? 0) + 1;
     }
 
-    return products;
+    frecuenciaDeIds.forEach(
+      (id, quantity) async {
+        products.add(await _fakeStoreService.getProduct(id));
+      },
+    );
   }
 
-  Future<bool> checkIfIstherProducts() async {
+  Future<bool> checkIfIsthereProducts() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     if (prefs.getStringList('cart') == null) {
@@ -37,6 +46,10 @@ class ShoppingCartViewModel {
         return false;
       }
       await getCart();
+
+      await Future.delayed(Duration(seconds: 1)).then((value) {
+        print('no me espero');
+      });
       return true;
     }
   }
