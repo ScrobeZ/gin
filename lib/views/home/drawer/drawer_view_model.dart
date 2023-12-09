@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gin/constants/strings.dart';
 import 'package:gin/services/auth_services.dart';
@@ -13,6 +14,15 @@ class DrawerViewModel {
     await _auth.instance.signOut().then((value) {
       context.go(startUpRoute);
     });
+  }
+
+  Future<String> getFullName() async {
+    var name = await FirebaseFirestore.instance
+        .collection('usuarios')
+        .doc(_auth.instance.currentUser!.uid)
+        .get()
+        .then((value) => value['completeName']);
+    return name;
   }
 
   navigateToCategory(BuildContext context) {

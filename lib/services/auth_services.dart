@@ -12,14 +12,12 @@ class FirebaseAuthService {
       UserCredential credential = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
 
-      var data = await FirebaseFirestore.instance.collection('usuarios').add({
-        'Nombre Completo': username,
-        'email': email,
-      });
+      await FirebaseFirestore.instance
+          .collection('usuarios')
+          .doc(credential.user!.uid)
+          .set({'completeName': username, 'email': email});
 
-      print(data.toString());
-
-      return credential.user;
+      return credential.user!;
     } on FirebaseAuthException catch (e) {
       print(e);
       if (e.code == 'weak-password') {

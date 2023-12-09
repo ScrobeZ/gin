@@ -27,20 +27,28 @@ class _DrawerViewState extends State<DrawerView> {
             'Bienvenido',
             style: TextStyle(color: Colors.white, fontSize: 35),
           ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Icon(
-                Icons.account_circle_outlined,
-                size: 40,
-                color: Colors.white,
-              ),
-              Text(
-                'Guillermo Castillo Montoya',
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-            ],
-          ),
+          FutureBuilder(
+              future: model.getFullName(),
+              builder: (context, snapshot) {
+                return (snapshot.connectionState == ConnectionState.done)
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const Icon(
+                            Icons.account_circle_outlined,
+                            size: 40,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            snapshot.data!,
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                        ],
+                      )
+                    : CircularProgressIndicator(
+                        color: Colors.white,
+                      );
+              }),
           verticalBigGap,
           _buildDrawerButton(
             context,
