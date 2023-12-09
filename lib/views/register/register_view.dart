@@ -113,7 +113,7 @@ class _RegisterViewState extends State<RegisterView> {
                       _passwordController.text, _passwordConfirmController.text)
                   .then((value) {
                 if (value is User) {
-                  model.navigateToHome(context);
+                  model.navigateToLogin(context);
                   return widget.toShowSnackBarCustom(
                     context,
                     color: Colors.green,

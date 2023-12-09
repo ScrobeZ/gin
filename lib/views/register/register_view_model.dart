@@ -23,7 +23,7 @@ class RegisterViewModel with TextHelpers {
       return 'Las contraseñas no coincide';
     }
 
-    var result = await _auth.signUpEmailPassword(email, password);
+    var result = await _auth.signUpEmailPassword(email, password, username);
     return result;
   }
 
@@ -35,7 +35,7 @@ class RegisterViewModel with TextHelpers {
     rememberPassword = !rememberPassword;
   }
 
-  navigateToHome(BuildContext context) {
+  navigateToLogin(BuildContext context) {
     context.go(loginRoute);
   }
 }

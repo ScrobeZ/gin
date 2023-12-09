@@ -109,22 +109,25 @@ class _ShoppingCartViewState extends State<ShoppingCartView> {
                           ),
                         ),
                         CustomTextButton(
-                            color: primaryBlack,
-                            textColor: Colors.white,
-                            text: 'Comprar',
-                            onPressed: () {
-                              setState(() {
+                          color: primaryBlack,
+                          textColor: Colors.white,
+                          text: 'Comprar',
+                          onPressed: () {
+                            setState(
+                              () {
                                 model.purchase();
                                 model.navigateToHome(context);
                                 return widget.toShowSnackBarCustom(
                                   context,
-                                  color: Colors.red,
+                                  color: Colors.green,
                                   snackBarContent: Center(
                                     child: Text('Compra exitosa!'),
                                   ),
                                 );
-                              });
-                            })
+                              },
+                            );
+                          },
+                        )
                       ],
                     )
                   : Text('No hay productos'),

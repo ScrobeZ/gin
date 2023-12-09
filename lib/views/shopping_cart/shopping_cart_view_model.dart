@@ -47,6 +47,6 @@ class ShoppingCartViewModel {
   }
 
   navigateToHome(BuildContext context) {
-    context.go(homeRoute);
+    context.go(dashboardRoute);
   }
 }

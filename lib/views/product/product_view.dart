@@ -3,9 +3,10 @@ import 'package:gin/constants/colors.dart';
 import 'package:gin/constants/gaps.dart';
 import 'package:gin/models/product.dart';
 import 'package:gin/views/product/product_view_model.dart';
+import 'package:gin/views/widgets/custom_snackbar.dart';
 import 'package:gin/views/widgets/custom_text_button.dart';
 
-class ProductView extends StatefulWidget {
+class ProductView extends StatefulWidget with CustomSnackbar {
   const ProductView({super.key, required this.id});
   final int id;
 
@@ -19,20 +20,27 @@ class _ProductViewState extends State<ProductView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
+          shadowColor: Colors.white,
+        ),
         backgroundColor: Colors.white,
-        body: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: FutureBuilder(
-            future: model.getProduct(widget.id),
-            builder: (context, snapshot) {
-              return (snapshot.hasData)
-                  ? _buildBody(snapshot.data!)
-                  : const Center(
-                      child: CircularProgressIndicator(
-                        color: primaryBlack,
-                      ),
-                    );
-            },
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: FutureBuilder(
+              future: model.getProduct(widget.id),
+              builder: (context, snapshot) {
+                return (snapshot.hasData)
+                    ? _buildBody(snapshot.data!)
+                    : const Center(
+                        child: CircularProgressIndicator(
+                          color: primaryBlack,
+                        ),
+                      );
+              },
+            ),
           ),
         ),
       ),
@@ -74,6 +82,16 @@ class _ProductViewState extends State<ProductView> {
           text: 'AÑADIR AL CARRO',
           onPressed: () {
             model.addCart(product.id);
+            return widget.toShowSnackBarCustom(
+              context,
+              color: primaryBlack,
+              snackBarContent: const Center(
+                child: Text(
+                  'Se añadio exitosamente al carrito',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            );
           },
           heigth: 50,
           color: Colors.pink.shade100,

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseAuthService {
@@ -5,10 +6,19 @@ class FirebaseAuthService {
 
   FirebaseAuth get instance => _auth;
 
-  Future<dynamic> signUpEmailPassword(String email, String password) async {
+  Future<dynamic> signUpEmailPassword(
+      String email, String password, String username) async {
     try {
       UserCredential credential = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+
+      var data = await FirebaseFirestore.instance.collection('usuarios').add({
+        'Nombre Completo': username,
+        'email': email,
+      });
+
+      print(data.toString());
+
       return credential.user;
     } on FirebaseAuthException catch (e) {
       print(e);

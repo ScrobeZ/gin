@@ -4,8 +4,9 @@ import 'package:gin/constants/gaps.dart';
 import 'package:gin/views/home/dashboard/dashboard_viewmodel.dart';
 import 'package:gin/views/home/widgets/discount_widget.dart';
 import 'package:gin/views/home/widgets/product_widget.dart';
+import 'package:gin/views/widgets/custom_snackbar.dart';
 
-class DashboardView extends StatefulWidget {
+class DashboardView extends StatefulWidget with CustomSnackbar {
   const DashboardView({super.key});
 
   @override
@@ -32,6 +33,16 @@ class _DashboardViewState extends State<DashboardView> {
                         limitedEdition: true,
                         onPressed: () {
                           model.addCart(model.products![1].id);
+                          return widget.toShowSnackBarCustom(
+                            context,
+                            color: primaryBlack,
+                            snackBarContent: const Center(
+                              child: Text(
+                                'Se añadio exitosamente al carrito',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          );
                         },
                       ),
                       verticalBigGap,
@@ -41,6 +52,16 @@ class _DashboardViewState extends State<DashboardView> {
                         limitedEdition: true,
                         onPressed: () {
                           model.addCart(model.products![0].id);
+                          return widget.toShowSnackBarCustom(
+                            context,
+                            color: primaryBlack,
+                            snackBarContent: const Center(
+                              child: Text(
+                                'Se añadio exitosamente al carrito',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          );
                         },
                       ),
                       verticalBigGap,
