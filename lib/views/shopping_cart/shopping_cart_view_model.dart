@@ -49,9 +49,7 @@ class ShoppingCartViewModel {
       }
       await getCart();
 
-      await Future.delayed(Duration(seconds: 1)).then((value) {
-        print('no me espero');
-      });
+      await Future.delayed(Duration(seconds: 1)).then((value) {});
       return true;
     }
   }

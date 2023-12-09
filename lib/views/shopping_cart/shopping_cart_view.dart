@@ -120,33 +120,7 @@ class ProductTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              IconButton(
-                style: const ButtonStyle(
-                  minimumSize: MaterialStatePropertyAll(Size(5, 5)),
-                  backgroundColor: MaterialStatePropertyAll(Colors.red),
-                ),
-                padding: const EdgeInsets.all(1),
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.remove,
-                  color: primaryBlack,
-                  size: 15,
-                ),
-              ),
               Text('$quantity'),
-              IconButton(
-                style: const ButtonStyle(
-                  minimumSize: MaterialStatePropertyAll(Size(5, 5)),
-                  backgroundColor: MaterialStatePropertyAll(Colors.green),
-                ),
-                padding: const EdgeInsets.all(1),
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.add,
-                  color: primaryBlack,
-                  size: 15,
-                ),
-              )
             ],
           ),
         ],
