@@ -14,6 +14,8 @@ class ShoppingCartViewModel {
   final FakeStoreService _fakeStoreService = FakeStoreService();
 
   Future<void> getCart() async {
+    products = [];
+    frecuenciaDeIds = {};
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     List<int>? listaDeIds = prefs
